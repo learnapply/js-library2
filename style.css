@@ -11,7 +11,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 /* strong {display: inline !important} */
@@ -60,7 +60,7 @@ body > h1 {
 .modal-content {
   background-color: #f1f1f1;
   margin: 15% auto;
-  padding: 24px;
+  padding: 16px 24px;
   border: 1px solid #888;
   width: 300px;
   height: auto;
@@ -73,7 +73,7 @@ body > h1 {
 
 .close {
   color: var(--accent-color);
-  font-size: 24px;
+  font-size: 16px;
   font-weight: bold;
   align-self: flex-end;
 }
@@ -127,9 +127,7 @@ button {
   font-weight: bold;
   color: white;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px;
-
 }
-
 
 button:hover {
   background-color: var(--main-color);
@@ -143,16 +141,15 @@ button:hover {
   font-size: 1.1rem;
 }
 
-
 .container button {
   width: auto;
-  background-color:var(--card-color);
+  background-color: var(--card-color);
   color: var(--accent-color);
   box-shadow: none;
 }
 
 .container button:hover {
-  color:var(--main-color);
+  color: var(--main-color);
 }
 
 p {
@@ -161,17 +158,21 @@ p {
   background-color: var(--card-color);
   width: 300px;
   height: 200px;
-  line-height: 30px;
+  line-height: 34px;
   display: flex;
   justify-content: space-between;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border-radius: 5px;
+  position: relative;
 }
 
 .delete {
   align-self: flex-end;
 }
 
-strong {
-  display: inline !important;
+.switch-read {
+  position: absolute;
+  bottom: 48px;
+  left: 8px;
+  font-weight: 100;
 }

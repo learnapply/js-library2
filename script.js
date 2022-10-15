@@ -6,6 +6,7 @@ const modal = document.querySelector(".modal");
 const modalbtn = document.querySelector(".modal-btn");
 const closebtn = document.querySelector(".close");
 const form = document.querySelector("#form");
+const switchRead = document.querySelector(".switch-read");
 
 class Book {
   constructor(title, author, pages, read) {
@@ -32,12 +33,17 @@ function resetForm() {
 }
 
 container.addEventListener("click", (e) => {
+  let i = e.target.parentElement.dataset.index;
   if (e.target.classList.contains("delete")) {
-    let i = e.target.parentElement.dataset.index;
     e.target.parentElement.remove();
     myLibrary.splice(i, 1);
   }
-  console.log(myLibrary);
+  if (e.target.classList.contains("switch-read")) {
+    myLibrary[i].read == "read"
+      ? (myLibrary[i].read = "not read yet")
+      : (myLibrary[i].read = "read");
+  }
+  displayBooks();
 });
 
 addBookToLibrary(
@@ -53,16 +59,14 @@ function displayBooks() {
   for (let i = 0; i < myLibrary.length; i++) {
     let p = document.createElement("p");
     p.dataset.index = `${i}`;
-    p.innerHTML = `${myLibrary[i].title} <br> by ${myLibrary[i].author} <br> ${myLibrary[i].pages} pages <br> ${
-      myLibrary[i].read == true ? "read" : "not read yet"
-    } <button class="delete">delete</button>`;
+    p.innerHTML = `${myLibrary[i].title} <br> by ${myLibrary[i].author} <br> ${
+      myLibrary[i].pages
+    } pages <br> <button class="switch-read">${
+      myLibrary[i].read == "read" ? "read" : "not read yet"
+    }</button> <button class="delete">delete</button>`;
     container.append(p);
   }
 }
-
-// document.querySelector("strong").style.display = "inline"
-// document.querySelector("strong").style.color = "white"
-
 
 function getBooksFromForm() {
   const title1 = document.getElementById("title").value;
