@@ -1,12 +1,8 @@
 let myLibrary = [];
-const btn = document.querySelector("#submit");
 const container = document.querySelector(".container");
-const deleteBtn = document.querySelector(".delete");
 const modal = document.querySelector(".modal");
-const modalbtn = document.querySelector(".modal-btn");
-const closebtn = document.querySelector(".close");
+const modalBtn = document.querySelector(".modal-btn");
 const form = document.querySelector("#form");
-const switchRead = document.querySelector(".switch-read");
 
 class Book {
   constructor(title, author, pages, read) {
@@ -34,17 +30,26 @@ function resetForm() {
 
 container.addEventListener("click", (e) => {
   let i = e.target.parentElement.dataset.index;
+  isDelete(e, i);
+  isSwitchRead(e, i);
+  displayBooks();
+});
+
+function isDelete(e, i) {
   if (e.target.classList.contains("delete")) {
     e.target.parentElement.remove();
     myLibrary.splice(i, 1);
   }
+}
+
+function isSwitchRead(e, i) {
   if (e.target.classList.contains("switch-read")) {
     myLibrary[i].read == "read"
       ? (myLibrary[i].read = "not read yet")
       : (myLibrary[i].read = "read");
   }
-  displayBooks();
-});
+}
+
 
 addBookToLibrary(
   new Book("In Search of Lost Time", "Marcel Proust", 543, "read")
@@ -69,12 +74,12 @@ function displayBooks() {
 }
 
 function getBooksFromForm() {
-  const title1 = document.getElementById("title").value;
-  const author1 = document.getElementById("author").value;
-  const pages1 = document.getElementById("pages").value;
-  const read1 = document.getElementById("read").checked;
+  const title = document.getElementById("title").value;
+  const author = document.getElementById("author").value;
+  const pages = document.getElementById("pages").value;
+  const read = document.getElementById("read").checked;
 
-  addBookToLibrary(new Book(title1, author1, pages1, read1));
+  addBookToLibrary(new Book(title, author, pages, read));
   displayBooks();
 }
 
@@ -82,12 +87,8 @@ function addBookToLibrary(book) {
   myLibrary.push(book);
 }
 
-modalbtn.addEventListener("click", () => {
+modalBtn.addEventListener("click", () => {
   modal.style.display = "block";
-});
-
-closebtn.addEventListener("click", () => {
-  modal.style.display = "none";
 });
 
 window.addEventListener("click", (e) => {
