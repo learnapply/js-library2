@@ -1,4 +1,4 @@
-let myLibrary = [];
+const myLibrary = [];
 const container = document.querySelector(".container");
 const modal = document.querySelector(".modal");
 const modalBtn = document.querySelector(".modal-btn");
@@ -11,6 +11,7 @@ class Book {
     this.pages = pages;
     this.read = read;
   }
+
   info() {
     return `${this.title} by ${this.author}, ${this.pages} pages, ${
       this.read ? "read" : "not read yet"
@@ -29,7 +30,7 @@ function resetForm() {
 }
 
 container.addEventListener("click", (e) => {
-  let i = e.target.parentElement.dataset.index;
+  const i = e.target.parentElement.dataset.index;
   isDelete(e, i);
   isSwitchRead(e, i);
   displayBooks();
@@ -50,7 +51,6 @@ function isSwitchRead(e, i) {
   }
 }
 
-
 addBookToLibrary(
   new Book("In Search of Lost Time", "Marcel Proust", 543, "read")
 );
@@ -62,7 +62,7 @@ displayBooks();
 function displayBooks() {
   container.innerHTML = "";
   for (let i = 0; i < myLibrary.length; i++) {
-    let p = document.createElement("p");
+    const p = document.createElement("p");
     p.dataset.index = `${i}`;
     p.innerHTML = `${myLibrary[i].title} <br> by ${myLibrary[i].author} <br> ${
       myLibrary[i].pages
